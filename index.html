@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOGIFAST · Calculadora de Envíos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       TOAST CONTAINER (notificaciones no-invasivas)
+  ═══════════════════════════════════════════════ -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- ═══════════════════════════════════════════════
+       FONDO DECORATIVO
+  ═══════════════════════════════════════════════ -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="grid-lines"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="10" width="18" height="14" rx="2" fill="#2563eb" opacity="0.15"/>
+            <rect x="4" y="8" width="18" height="14" rx="2" fill="#2563eb" opacity="0.3"/>
+            <rect x="6" y="6" width="18" height="14" rx="2" fill="#2563eb"/>
+            <path d="M10 11h8M10 14h5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">LOGIFAST</span>
+          <span class="brand-sub">Calculadora Inteligente de Costos de Envío</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          Sistema Online
+        </div>
+        <div class="version-tag">v2.4.1</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════ -->
+  <main class="main">
+    <div class="card-glass">
+
+      <!-- ─── COLUMNA IZQUIERDA: Formulario ─── -->
+      <section class="col-form">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+          </div>
+          <div>
+            <h1 class="section-title">Datos del Envío</h1>
+            <p class="section-desc">Complete la información del paquete para obtener una cotización automática.</p>
+          </div>
+        </div>
+
+        <!-- ── Bloque: Dimensiones ── -->
+        <div class="form-block">
+          <div class="form-block-header">
+            <span class="block-label">Dimensiones del paquete</span>
+            <span class="block-hint">en centímetros</span>
+          </div>
+
+          <div class="inputs-grid">
+            <!-- Alto -->
+            <div class="field" id="field-alto">
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/>
+                    <polyline points="7 17 12 22 17 17"/>
+                  </svg>
+                </span>
+                <input
+                  type="number"
+                  id="alto"
+                  class="input-field"
+                  placeholder=" "
+                  min="1"
+                  max="300"
+                  autocomplete="off"
+                />
+                <label class="input-label" for="alto">Alto</label>
+                <span class="input-unit">cm</span>
+              </div>
+              <span class="field-msg"></span>
+            </div>
+
+            <!-- Ancho -->
+            <div class="field" id="field-ancho">
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="2" y1="12" x2="22" y2="12"/><polyline points="7 7 2 12 7 17"/>
+                    <polyline points="17 7 22 12 17 17"/>
+                  </svg>
+                </span>
+                <input
+                  type="number"
+                  id="ancho"
+                  class="input-field"
+                  placeholder=" "
+                  min="1"
+                  max="300"
+                  autocomplete="off"
+                />
+                <label class="input-label" for="ancho">Ancho</label>
+                <span class="input-unit">cm</span>
+              </div>
+              <span class="field-msg"></span>
+            </div>
+
+            <!-- Largo -->
+            <div class="field" id="field-largo">
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/>
+                    <polyline points="19 9 22 12 19 15"/><polyline points="9 19 12 22 15 19"/>
+                  </svg>
+                </span>
+                <input
+                  type="number"
+                  id="largo"
+                  class="input-field"
+                  placeholder=" "
+                  min="1"
+                  max="300"
+                  autocomplete="off"
+                />
+                <label class="input-label" for="largo">Largo</label>
+                <span class="input-unit">cm</span>
+              </div>
+              <span class="field-msg"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Bloque: Destino ── -->
+        <div class="form-block">
+          <div class="form-block-header">
+            <span class="block-label">Destino de entrega</span>
+            <span class="block-hint">desde Buenos Aires</span>
+          </div>
+
+          <div class="field" id="field-destino">
+            <div class="select-wrap">
+              <span class="select-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </span>
+              <select id="destino" class="select-field">
+                <option value="">— Seleccionar ciudad de destino —</option>
+                <option value="300">🏙️ Rosario · Santa Fe · 300 km</option>
+                <option value="700">🏛️ Córdoba Capital · Córdoba · 700 km</option>
+                <option value="1050">🍇 Mendoza · Mendoza · 1.050 km</option>
+                <option value="1200">🎶 Tucumán · Tucumán · 1.200 km</option>
+                <option value="1450">🌄 Salta · Salta · 1.450 km</option>
+              </select>
+              <span class="select-arrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </div>
+            <span class="field-msg"></span>
+          </div>
+        </div>
+
+        <!-- ── Botón principal ── -->
+        <button id="btn-calcular" class="btn-primary" type="button">
+          <span class="btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </span>
+          <span class="btn-text">Calcular Envío</span>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <!-- ── Resultado ── -->
+        <div id="resultado" class="resultado hidden" aria-live="polite">
+          <div class="resultado-header">
+            <div class="resultado-icon">✅</div>
+            <div>
+              <span class="resultado-title">Cotización generada</span>
+              <span class="resultado-id" id="cotizacion-id"></span>
+            </div>
+          </div>
+
+          <div class="resultado-grid">
+            <div class="res-item">
+              <span class="res-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                Peso volumétrico
+              </span>
+              <span class="res-value" id="res-peso"></span>
+            </div>
+            <div class="res-item">
+              <span class="res-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Distancia
+              </span>
+              <span class="res-value" id="res-dist"></span>
+            </div>
+            <div class="res-item">
+              <span class="res-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                Tarifa base
+              </span>
+              <span class="res-value" id="res-base"></span>
+            </div>
+            <div class="res-item">
+              <span class="res-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/></svg>
+                Recargo distancia
+              </span>
+              <span class="res-value" id="res-recargo"></span>
+            </div>
+          </div>
+
+          <div class="resultado-total">
+            <span class="total-label">Costo total estimado</span>
+            <span class="total-value" id="res-total"></span>
+            <span class="total-note">* IVA no incluido · Tarifa sujeta a disponibilidad</span>
+          </div>
+
+          <div class="resultado-actions">
+            <button class="btn-secondary" onclick="window.print()">Imprimir cotización</button>
+            <button class="btn-secondary" id="btn-nueva">Nueva consulta</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ─── COLUMNA DERECHA: Preview en tiempo real ─── -->
+      <aside class="col-preview">
+
+        <!-- Vista previa del paquete -->
+        <div class="preview-block">
+          <div class="preview-header">
+            <span class="block-label">Vista previa del envío</span>
+            <span class="preview-live">
+              <span class="live-dot"></span>
+              En vivo
+            </span>
+          </div>
+
+          <div class="box3d-scene" id="box3d-scene">
+            <div class="box3d" id="box3d">
+              <!-- Caras de la caja -->
+              <div class="face face-top"></div>
+              <div class="face face-front"></div>
+              <div class="face face-right"></div>
+              <!-- Cinta decorativa -->
+              <div class="tape tape-h"></div>
+              <div class="tape tape-v"></div>
+            </div>
+            <!-- Sombra proyectada -->
+            <div class="box3d-shadow" id="box3d-shadow"></div>
+          </div>
+
+          <!-- Dimensiones en tiempo real -->
+          <div class="dims-display">
+            <div class="dim-item">
+              <span class="dim-icon">↕</span>
+              <span class="dim-label">Alto</span>
+              <span class="dim-value" id="dim-alto">— cm</span>
+            </div>
+            <div class="dim-sep"></div>
+            <div class="dim-item">
+              <span class="dim-icon">↔</span>
+              <span class="dim-label">Ancho</span>
+              <span class="dim-value" id="dim-ancho">— cm</span>
+            </div>
+            <div class="dim-sep"></div>
+            <div class="dim-item">
+              <span class="dim-icon">⊡</span>
+              <span class="dim-label">Largo</span>
+              <span class="dim-value" id="dim-largo">— cm</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta de destino -->
+        <div class="dest-block" id="dest-block">
+          <div class="dest-top">
+            <div class="dest-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <span class="dest-label">Ciudad de destino</span>
+              <span class="dest-name" id="dest-name">Sin seleccionar</span>
+            </div>
+          </div>
+          <div class="dist-visual">
+            <div class="dist-info">
+              <span class="dist-from">📍 Bs. As.</span>
+              <span class="dist-km" id="dist-km">0 km</span>
+              <span class="dist-to" id="dist-to">—</span>
+            </div>
+            <div class="dist-bar-wrap">
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" id="dist-bar-fill"></div>
+                <div class="dist-bar-dot origin"></div>
+                <div class="dist-bar-dot dest" id="dist-dot-dest"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen volumétrico live -->
+        <div class="vol-block" id="vol-block">
+          <div class="vol-header">
+            <span class="block-label">Estimación instantánea</span>
+          </div>
+          <div class="vol-row">
+            <span class="vol-label">Peso volumétrico</span>
+            <span class="vol-val" id="live-peso">—</span>
+          </div>
+          <div class="vol-row">
+            <span class="vol-label">Volumen total</span>
+            <span class="vol-val" id="live-vol">—</span>
+          </div>
+          <div class="vol-row">
+            <span class="vol-label">Estimación preliminar</span>
+            <span class="vol-val accent" id="live-est">—</span>
+          </div>
+          <p class="vol-note">Los valores finales se confirman al calcular.</p>
+        </div>
+
+      </aside>
+
+    </div><!-- /card-glass -->
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
